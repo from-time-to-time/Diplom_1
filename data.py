@@ -1,6 +1,6 @@
 class UserData:
-    LATIN_BUN_NAME = "Белая булочка"
-    CYRILLIC_BUN_NAME = "Tasty bun"
+    LATIN_BUN_NAME = "Tasty bun"
+    CYRILLIC_BUN_NAME = "Белая булочка"
     SYMBOLIC_BUN_NAME = "Булочка 100% глютен"
     REGULAR_PRICE = 20.99
     LONG_PRICE = 999999.99
