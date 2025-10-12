@@ -1,21 +1,35 @@
 import pytest
 from praktikum.bun import Bun
+from data import UserData
 
 @pytest.mark.parametrize(
-    "name, price",
+    "name",
     [
-        ("Белая булочка", 20.99),
-        ("Ржаная булочка", 999999.99), # Длинная цена
-        ("Tasty bun", 2.99), # Латиница
-        ("Булочка 100%", 0.99) # Спецсимволы в имени
+        UserData.CYRILLIC_BUN_NAME, # Кириллица
+        UserData.LATIN_BUN_NAME, # Латиница
+        UserData.SYMBOLIC_BUN_NAME # Спецсимволы
     ],
 )
-def test_parametrized_bun(name, price):
-    bun = Bun(name=name, price=price)
+def test_parametrized_bun_name(name):
+    bun = Bun(name=name, price=UserData.REGULAR_PRICE)
     assert bun.get_name() == name
+
+@pytest.mark.parametrize(
+    "price",
+    [
+        UserData.REGULAR_PRICE, # Обычная
+        UserData.LONG_PRICE, # Длинная
+        UserData.LESS_THEN_ONE_PRICE # Меньше 1
+    ],
+)
+def test_parametrized_bun_price(price):
+    bun = Bun(name=UserData.CYRILLIC_BUN_NAME, price=price)
     assert bun.get_price() == price
 
-def test_getters_types_are_correct():
-    bun = Bun(name="Сдобная", price=10.0)
-    assert isinstance(bun.get_name(), str) # Возвращает String
+def test_bun_price_correct_type():
+    bun = Bun(name=UserData.CYRILLIC_BUN_NAME, price=UserData.REGULAR_PRICE)
     assert isinstance(bun.get_price(), float) # Возвращает Float
+
+def test_bun_name_correct_type():
+    bun = Bun(name=UserData.CYRILLIC_BUN_NAME, price=UserData.REGULAR_PRICE)
+    assert isinstance(bun.get_name(), str) # Возвращает String
